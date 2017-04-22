@@ -1,0 +1,9 @@
+sudo: false
+language: node_js
+node_js:
+  - stable
+  - 6
+script:
+  - npm test
+notifications:
+  slack: godofchicken:BqRKwRJXLp7VjtggROq6riqm
