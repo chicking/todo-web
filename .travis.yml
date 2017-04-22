@@ -8,6 +8,7 @@ before_install:
     - "sh -e /etc/init.d/xvfb start"
     - sleep 3 # give xvfb some time to start
 script:
+  - jdk_switcher use oraclejdk8
   - npm test
 notifications:
   slack: godofchicken:BqRKwRJXLp7VjtggROq6riqm
