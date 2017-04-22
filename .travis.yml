@@ -15,5 +15,7 @@ before_install:
 script:
   - jdk_switcher use oraclejdk8
   - npm test
+after_success:
+  - npm run report-coverage
 notifications:
   slack: godofchicken:BqRKwRJXLp7VjtggROq6riqm
