@@ -1,4 +1,5 @@
 # todo-web
+[![Build Status](https://travis-ci.org/chicking/todo-web.svg?branch=master)](https://travis-ci.org/chicking/todo-web) [![codecov.io](https://codecov.io/github/chicking/todo-web/coverage.svg?branch=master)](https://codecov.io/github/chicking/todo-web?branch=master)
 
 > A Todo web project
 
