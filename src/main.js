@@ -6,6 +6,9 @@ import router from './router'
 
 import './bootstrap'
 
+import Auth from './plugins/vue-auth-jwt'
+Vue.use(Auth)
+
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
