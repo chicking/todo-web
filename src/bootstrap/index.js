@@ -1,2 +1,2 @@
 
-import './vue-material'
+import './axios'

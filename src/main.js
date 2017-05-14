@@ -6,6 +6,9 @@ import router from './router'
 
 import './bootstrap'
 
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
+
 import Auth from './plugins/vue-auth-jwt'
 Vue.use(Auth)
 
