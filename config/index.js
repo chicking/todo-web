@@ -28,8 +28,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api': {
-        target: 'http://localhost:3000'
+      '/todo/api': {
+        target: 'http://localhost:3000',
+        pathRewrite: {
+          '^/todo/api': '/api'
+        }
       }
     },
     // CSS Sourcemaps off by default because relative paths are "buggy"
