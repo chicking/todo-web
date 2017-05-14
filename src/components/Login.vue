@@ -75,6 +75,10 @@ export default {
 
       this.$auth.regist(this.credentials)
       .then(() => {
+        this.credentials.name = ''
+        this.credentials.password = ''
+        this.password_confirmed = ''
+
         this.close()
       })
     },

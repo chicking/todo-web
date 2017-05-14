@@ -41,6 +41,10 @@ export default class Auth {
       })
   }
 
+  regist(credentials) {
+    return this.axios.post('/auth/regist', credentials)
+  }
+
   checkRoles(roles, next) {
     if (roles) {
       if (this.check(roles)) {
