@@ -64,7 +64,7 @@ export default class Auth {
   fetch() {
     this.data.authenticated = false
     if (token.get()) {
-      return this.axios.get('/auth/me')
+      return this.axios.get('/me')
         .then(response => {
           const user = response.data.data
 

@@ -14,8 +14,9 @@ export default {
     })
 
     Vue.axios.interceptors.response.use(response => {
-      if (response.headers.authorization) {
-        auth.setToken(response.headers.authorization)
+      console.log(response)
+      if (response.data.token) {
+        auth.setToken(response.data.token)
       }
       return response
     })
