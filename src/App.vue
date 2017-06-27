@@ -1,10 +1,13 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <router-view v-if="$auth.checkAuth()"></router-view>
+    <login v-else></login>
   </div>
 </template>
 
 <script>
+import Login from '@/components/Login.vue'
+
 export default {
   name: 'app',
   beforeCreate() {
@@ -12,18 +15,9 @@ export default {
       .then(() => {
         this.$router.push('/todo')
       })
-      .catch(() => {
-        this.$router.push('/login')
-      })
+  },
+  components: {
+    Login
   }
 }
 </script>
-
-<style>
-html, body {
-  height: 100%;
-}
-#app {
-  height: 100%;
-}
-</style>

@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Login from '@/components/Login'
 import Todo from '@/components/Todo'
 
 Vue.use(Router)
@@ -8,13 +7,9 @@ Vue.use(Router)
 const router = new Router({
   routes: [
     {
-      path: '/login',
-      name: 'Login',
-      component: Login
-    },
-    {
       path: '/todo',
       name: 'Todo',
+      meta: {auth: true},
       component: Todo
     }
   ]

@@ -1,53 +1,55 @@
 <template lang="html">
-  <v-card>
-    <v-card-text>
-      <v-container fluid>
-        <v-row row>
-          <v-col xs12>
-            <v-text-field
-              name="input-1-3"
-              label="Input your task"
-              single-line
-              v-model="todo.content"
-              @keyup.enter.native="add(todo)"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-card-text>
-    <v-list two-line>
-      <v-list-item v-for="todo of todos" :key="todo._id">
-        <v-list-tile v-if="isEditMode(todo)">
-          <v-list-tile-content>
-            <v-list-tile-title>
-              <v-text-field
-                ref="input"
-                name="input-1-3"
-                label="Todo"
-                single-line
-                v-model="todo.content"
-                @keyup.enter.native="update(todo)"
-                @focusout.native="editTodo = null"
-              ></v-text-field>
-            </v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile v-else>
-          <v-list-tile-action>
-            <v-checkbox v-model="todo.done" @change="update(todo)"/>
-          </v-list-tile-action>
-          <v-list-tile-content @dblclick="editMode(todo)">
-            <v-list-tile-title v-text="todo.content">Content</v-list-tile-title>
-          </v-list-tile-content>
-          <v-list-tile-action>
-            <v-btn class="red--text" icon @click.native="remove(todo)">
-              <v-icon>delete</v-icon>
-            </v-btn>
-          </v-list-tile-action>
-        </v-list-tile>
-      </v-list-item>
-    </v-list>
-  </v-card>
+  <div class="container">
+    <nav class="nav">
+      <div class="nav-right">
+        <div class="nav-item">
+          {{username}}
+        </div>
+        <a class="nav-item" @click="logout()">
+          <span class="icon">
+            <i class="fa fa-sign-out"></i>
+          </span>
+        </a>
+      </div>
+    </nav>
+    <section class="section">
+      <div class="content">
+        <p class="control">
+          <input type="text" v-model="todo.content" class="input" placeholder="Enter your tasks..." @keyup.enter="add(todo)">
+        </p>
+      </div>
+    </section>
+    <div class="b-table">
+      <div class="b-table-content">
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <th style="width: 30px;"></th>
+              <th>Tasks</th>
+              <th style="width: 30px;"></th>
+            </thead>
+            <tbody>
+              <tr v-for="todo of todos" :key="todo._id">
+                <td>
+                  <b-checkbox v-model="todo.done" @change="update(todo)"></b-checkbox>
+                </td>
+                <td>
+                  {{todo.content}}
+                </td>
+                <td>
+                  <button class="button is-danger is-outlined" @click="remove(todo)">
+                    <span class="icon is-small">
+                      <i class="fa fa-remove"></i>
+                    </span>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -60,6 +62,13 @@ export default {
       todo: {
         content: ''
       }
+    }
+  },
+  computed: {
+    username() {
+      return this.$auth.checkAuth()
+        ? this.$auth.user().name
+        : ''
     }
   },
   beforeMount() {
@@ -99,6 +108,9 @@ export default {
         .then(({data}) => {
           this.todos = data.todos
         })
+    },
+    logout() {
+      this.$auth.logout()
     }
   }
 }

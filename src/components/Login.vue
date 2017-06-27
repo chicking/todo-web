@@ -66,9 +66,6 @@ export default {
       .then(() => {
         this.$router.push('/todo')
       })
-      .catch(({response}) => {
-        console.log(response)
-      })
     },
     regist() {
       if (this.credentials.password !== this.password_confirmed) return

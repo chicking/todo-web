@@ -33,7 +33,7 @@ export default class Auth {
   login(credentials) {
     return this.axios.post('/auth/login', credentials)
       .then(response => {
-        const user = response.data.data
+        const user = response.data.user
 
         this.data.authenticated = true
         this.data.user = user
@@ -66,7 +66,7 @@ export default class Auth {
     if (token.get()) {
       return this.axios.get('/me')
         .then(response => {
-          const user = response.data.data
+          const user = response.data.user
 
           this.data.authenticated = true
           this.data.user = user

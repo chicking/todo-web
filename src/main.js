@@ -6,9 +6,9 @@ import router from './router'
 
 import './bootstrap'
 
-import Vuetify from 'vuetify'
-import 'vuetify/dist/vuetify.min.css'
-Vue.use(Vuetify)
+import Buefy from 'buefy'
+import 'buefy/lib/buefy.css'
+Vue.use(Buefy)
 
 import Auth from './plugins/vue-auth-jwt'
 Vue.use(Auth)
