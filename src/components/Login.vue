@@ -17,7 +17,7 @@
         <div class="button-container">
           <button><span>Go</span></button>
         </div>
-        <div class="footer"><a href="#">Forgot your password?</a></div>
+        <!-- <div class="footer"><a href="#">Forgot your password?</a></div> -->
       </form>
     </div>
     <div class="card alt">
@@ -27,18 +27,18 @@
       </h1>
       <form @submit.prevent="regist">
         <div class="input-container">
-          <input type="text" id="#{label}" v-model="credentials.name" required="required"/>
-          <label for="#{label}">Username</label>
+          <input type="text" v-model="credentials.name" required="required"/>
+          <label>Username</label>
           <div class="bar"></div>
         </div>
         <div class="input-container">
-          <input type="password" id="#{label}" v-model="credentials.password" required="required"/>
-          <label for="#{label}">Password</label>
+          <input type="password" v-model="credentials.password" required="required"/>
+          <label>Password</label>
           <div class="bar"></div>
         </div>
         <div class="input-container">
-          <input type="password" id="#{label}" v-model="password_confirmed" required="required"/>
-          <label for="#{label}">Repeat Password</label>
+          <input type="password" v-model="password_confirmed" required="required"/>
+          <label>Repeat Password</label>
           <div class="bar"></div>
         </div>
         <div class="button-container">
