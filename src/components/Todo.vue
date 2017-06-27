@@ -19,36 +19,30 @@
         </p>
       </div>
     </section>
-    <div class="b-table">
-      <div class="b-table-content">
-        <div class="table-wrapper">
-          <table class="table">
-            <thead>
-              <th style="width: 30px;"></th>
-              <th>Tasks</th>
-              <th style="width: 30px;"></th>
-            </thead>
-            <tbody>
-              <tr v-for="todo of todos" :key="todo._id">
-                <td>
-                  <b-checkbox v-model="todo.done" @change="update(todo)"></b-checkbox>
-                </td>
-                <td>
-                  {{todo.content}}
-                </td>
-                <td>
-                  <button class="button is-danger is-outlined" @click="remove(todo)">
-                    <span class="icon is-small">
-                      <i class="fa fa-remove"></i>
-                    </span>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
+    <table class="table">
+      <thead>
+        <th style="width: 30px;"></th>
+        <th>Tasks</th>
+        <th style="width: 30px;"></th>
+      </thead>
+      <tbody>
+        <tr v-for="todo of todos" :key="todo._id">
+          <td>
+            <b-checkbox v-model="todo.done" @change="update(todo)"></b-checkbox>
+          </td>
+          <td>
+            {{todo.content}}
+          </td>
+          <td>
+            <button class="button is-danger is-outlined" @click="remove(todo)">
+              <span class="icon is-small">
+                <i class="fa fa-remove"></i>
+              </span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
