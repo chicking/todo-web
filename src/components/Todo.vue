@@ -14,7 +14,7 @@
     </nav>
     <section class="section">
       <div class="content">
-        <p class="control">
+        <p class="control" :class="{'is-loading': loading}">
           <input type="text" v-model="todo.content" class="input" placeholder="Enter your tasks..." @keyup.enter="add(todo)">
         </p>
       </div>
@@ -30,9 +30,9 @@
           <td>
             <b-checkbox v-model="todo.done" @change="update(todo)"></b-checkbox>
           </td>
-          <td>
+          <td-input v-model="todo.content" @update="update(todo)">
             {{todo.content}}
-          </td>
+          </td-input>
           <td>
             <button class="button is-danger is-outlined" @click="remove(todo)">
               <span class="icon is-small">
@@ -47,15 +47,16 @@
 </template>
 
 <script>
+import TdInput from './TdInput.vue'
+
 export default {
   data() {
     return {
       todos: [],
-      editTodo: null,
-      dialog: false,
       todo: {
         content: ''
-      }
+      },
+      loading: false
     }
   },
   computed: {
@@ -69,25 +70,20 @@ export default {
     this.fetchData()
   },
   methods: {
-    isEditMode(todo) {
-      return this.editTodo === todo
-    },
-    editMode(todo) {
-      this.editTodo = todo
-      this.$nextTick(() => {
-        this.$refs.input[0].focus()
-      })
-    },
     add(todo) {
+      this.loading = true
       this.axios.post('/todo', todo)
         .then(response => {
           this.todos.push(response.data)
           todo.content = ''
+          this.loading = false
+        })
+        .catch(() => {
+          this.loading = false
         })
     },
     update(todo) {
       this.axios.put(`/todo/${todo._id}`, todo)
-      this.editTodo = null
     },
     remove(todo) {
       const id = todo._id
@@ -106,6 +102,9 @@ export default {
     logout() {
       this.$auth.logout()
     }
+  },
+  components: {
+    TdInput
   }
 }
 </script>
